@@ -8,13 +8,12 @@ terraform {
   required_version = "~>1.8.4" /*Многострочный комментарий.
  Требуемая версия terraform */
 }
-provider "docker" {}
-/*
+#provider "docker" {}
+
 provider "docker" {
-  host     = "ssh://admin@51.250.44.14:22"
+  host     = "ssh://admin@84.201.151.217:22"
   ssh_opts = ["-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null", "-i", "id_ed25519"]
 }
-*/
 
 #однострочный комментарий
 
@@ -42,9 +41,16 @@ resource "docker_image" "mysql_image" {
 resource "docker_container" "mysql" {
   name = "mysql"
   image = docker_image.mysql_image.image_id
-  env = ["MYSQL_ROOT_PASSWORD = 3232342342423334","MYSQL_DATABASE=wordpress","MYSQL_USER=wordpress"]
+  env = [
+    "MYSQL_ROOT_PASSWORD=\"${random_password.root_random_string.result}\"",
+    "MYSQL_DATABASE=wordpress",
+    "MYSQL_USER=wordpress",
+    "MYSQL_PASSWORD=\"${random_password.random_string.result}\"",
+    "MYSQL_ROOT_HOST=\"%\""
+  ]
   ports {
     internal = 3306
     external = 3306
+    ip = "127.0.0.1"
   }
 }
