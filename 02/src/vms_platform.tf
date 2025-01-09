@@ -2,11 +2,13 @@
 
 variable "cloud_id" {
   type        = string
+  default     = "b1gai9q7g24vs528f0mj"
   description = "https://cloud.yandex.ru/docs/resource-manager/operations/cloud/get-id"
 }
 
 variable "folder_id" {
   type        = string
+  default     = "b1g824fnevfopjm44h1i"
   description = "https://cloud.yandex.ru/docs/resource-manager/operations/folder/get-id"
 }
 
@@ -108,4 +110,30 @@ variable "vm_db_yandex_compute_instance_core_fraction" {
   type        = number
   default     = 20
   description = "20"
+}
+variable "vms_resources" {
+  type = map(object({
+    cores         = number
+    core_fraction = number
+    memory        = number
+  }))
+  default = {
+    web = {
+      cores         = 2
+      memory        = 1
+      core_fraction = 5
+    },
+    db = {
+      cores         = 2
+      memory        = 2
+      core_fraction = 20
+    }
+  }
+}
+variable metadata {
+  type = map(string)
+  default = {
+    serial-port-enable = "1"
+    ssh-keys           = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE/l7aD5x+bX9c0L7odxlFD1wTreEcXJDZ/Cb/aKFj3E admin@ubuntu-50"
+  }
 }
