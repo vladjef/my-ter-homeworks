@@ -81,36 +81,36 @@ variable "vm_db_yandex_compute_instance_platform_id" {
   description = "standard-v1"
 }
 
-variable "yandex_compute_instance_cores" {
-  type        = number
-  default     = 2
-  description = "2"
-}
-variable "vm_db_yandex_compute_instance_cores" {
-  type        = number
-  default     = 2
-  description = "2"
-}
-variable "yandex_compute_instance_memory" {
-  type        = number
-  default     = 1
-  description = "1"
-}
-variable "vm_db_yandex_compute_instance_memory" {
-  type        = number
-  default     = 2
-  description = "2"
-}
-variable "yandex_compute_instance_core_fraction" {
-  type        = number
-  default     = 5
-  description = "5"
-}
-variable "vm_db_yandex_compute_instance_core_fraction" {
-  type        = number
-  default     = 20
-  description = "20"
-}
+# variable "yandex_compute_instance_cores" {
+#   type        = number
+#   default     = 2
+#   description = "2"
+# }
+# variable "vm_db_yandex_compute_instance_cores" {
+#   type        = number
+#   default     = 2
+#   description = "2"
+# }
+# variable "yandex_compute_instance_memory" {
+#   type        = number
+#   default     = 1
+#   description = "1"
+# }
+# variable "vm_db_yandex_compute_instance_memory" {
+#   type        = number
+#   default     = 2
+#   description = "2"
+# }
+# variable "yandex_compute_instance_core_fraction" {
+#   type        = number
+#   default     = 5
+#   description = "5"
+# }
+# variable "vm_db_yandex_compute_instance_core_fraction" {
+#   type        = number
+#   default     = 20
+#   description = "20"
+# }
 variable "vms_resources" {
   type = map(object({
     cores         = number
