@@ -9,7 +9,7 @@
 *.tfstate.*
 
 # own secret vars store.
-**/03/src/personal.auto.tfvars
+**/03/src/*.tfvars
 
 
 terraform.tfvars
