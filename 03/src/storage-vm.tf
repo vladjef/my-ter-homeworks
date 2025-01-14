@@ -1,5 +1,6 @@
 resource "yandex_compute_instance" "storage-vm" {
   name        = "storage"
+  hostname    = "storage"
   platform_id = var.yandex_compute_instance_platform_id
   resources {
     cores         = var.vms_resources.web.cores

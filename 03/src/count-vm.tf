@@ -2,6 +2,7 @@ resource "yandex_compute_instance" "web" {
   depends_on = [yandex_compute_instance.db]
   count       = var.yandex_compute_instance_count
   name        = "web-${count.index + 1}"
+  hostname    = "web-${count.index + 1}"
   platform_id = var.yandex_compute_instance_platform_id
   resources {
     cores         = var.vms_resources.web.cores

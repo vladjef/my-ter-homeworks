@@ -1,6 +1,7 @@
 resource "yandex_compute_instance" "db" {
   for_each    = { for key, value in var.vms_db_each : key => value }
   name        = "${each.value.vm_name}"
+  hostname    = "${each.value.vm_name}"
   platform_id = var.yandex_compute_instance_platform_id
   resources {
     cores         = each.value.cores
