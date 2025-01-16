@@ -1,6 +1,11 @@
 locals {
+  project       = "netology"
+  stream        = "develop"
+  env           = "platform"
+  app_host_name = "web"
+  db_host_mane  = "db"
   vm_names_list = {
-    vm_web_name = var.yandex_compute_instance_name
-    vm_db_name = var.vm_db_yandex_compute_instance_name
+    vm_web_name = "${local.project}-${local.stream}-${local.env}-${local.app_host_name}"
+    vm_db_name = "${local.project}-${local.stream}-${local.env}-${local.db_host_mane}"
   }
 }
