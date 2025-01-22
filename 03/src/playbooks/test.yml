@@ -1,0 +1,36 @@
+---
+- name: "Save secrets"
+  hosts: webservers
+  gather_facts: false
+  vars:
+    ansible_ssh_user: ubuntu
+  become: yes
+  pre_tasks:
+    - name: "Waiting 22 port is open"
+      wait_for:
+        host: '{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}'
+        port: 22
+        search_regex: OpenSSH
+
+  tasks:
+    # - name: Install Nginx Web Server on Debian Family
+    #   apt:
+    #     name:
+    #       - nginx
+    #       - jq
+    #     state: latest
+    #     update_cache: yes
+
+    # cat /tmp/own.pass  | jq
+    - name: "Save own secret"
+      copy:
+        dest: /tmp/own.pass
+        content: "{{ secrets[inventory_hostname]  }}"
+      when: secrets[inventory_hostname] is defined
+
+    # cat /tmp/all.pass  | jq
+    - name: save all secrets
+      copy:
+        dest: /tmp/all.pass
+        content: "{{ secrets }}"
+      when: secrets is defined
