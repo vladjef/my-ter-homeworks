@@ -33,25 +33,77 @@ variable "vpc_name" {
 
 ###common vars
 
-variable "vms_ssh_root_key" {
-  type        = string
-  default     = "your_ssh_ed25519_key"
-  description = "ssh-keygen -t ed25519"
+# variable "vms_ssh_root_key" {
+#   type        = string
+#   default     = "your_ssh_ed25519_key"
+#   description = "ssh-keygen -t ed25519"
+# }
+#
+# ###example vm_web var
+# variable "vm_web_name" {
+#   type        = string
+#   default     = "netology-develop-platform-web"
+#   description = "example vm_web_ prefix"
+# }
+#
+# ###example vm_db var
+# variable "vm_db_name" {
+#   type        = string
+#   default     = "netology-develop-platform-db"
+#   description = "example vm_db_ prefix"
+# }
+
+
+variable "env_name" {
+  type        = list(string)
+  default     = ["develop", "stage"]
+  description = "VPC subnet name"
 }
 
-###example vm_web var
-variable "vm_web_name" {
+variable "subnet_zone" {
   type        = string
-  default     = "netology-develop-platform-web"
-  description = "example vm_web_ prefix"
+  default     = "ru-central1-a"
+  description = "VPC subnet zone"
 }
 
-###example vm_db var
-variable "vm_db_name" {
-  type        = string
-  default     = "netology-develop-platform-db"
-  description = "example vm_db_ prefix"
+variable "instance_name" {
+  type        = list(string)
+  default     = ["marketing", "analytics"]
+  description = "Instance name"
 }
 
+variable "instance_count" {
+  type        = number
+  default     = 1
+  description = "Instance count"
+}
 
+variable "image_family" {
+  type        = string
+  default     = "ubuntu-2004-lts"
+  description = "Image family"
+}
 
+variable "public_ip" {
+  type        = bool
+  default     = true
+  description = "Public ip"
+}
+
+variable "project" {
+  type        = list(string)
+  default     = ["marketing", "analytics"]
+  description = "Project name"
+}
+
+variable "serial-port-enable" {
+  type        = number
+  default     = 1
+  description = "Serial port enable"
+}
+
+variable "packages" {
+  type    = list
+  default = ["vim", "nginx"]
+  description = "List of packages"
+}
